@@ -41,19 +41,26 @@ function chooseExpenses() {
 chooseExpenses();
 
 
+function detectDayBudget() {
+    appData.moneyPerDay = (appData.budget/30).toFixed();
+    alert('Ежедневный бюджет:' + appData.moneyPerDay);
+};
 
-appData.moneyPerDay = (appData.budget/30).toFixed();
+detectDayBudget();
 
-alert('Ежедневный бюджет:' + appData.moneyPerDay);
-if (appData.moneyPerDay < 100) {
-    console.log('Poor');
-} else if (appData.moneyPerDay >100 && appData.moneyPerDay < 2000) {
-    console.log('medium');
-} else if (appData.moneyPerDay > 2000) {
-    console.log('high income');
-} else {
-    console.log('Error');
-}
+function detectLevel() {
+    if (appData.moneyPerDay < 100) {
+        console.log('Poor');
+    } else if (appData.moneyPerDay >100 && appData.moneyPerDay < 2000) {
+        console.log('medium');
+    } else if (appData.moneyPerDay > 2000) {
+        console.log('high income');
+    } else {
+        console.log('Error');
+    }
+};
+
+detectLevel();
 
 function checkSavings() {
     if (appData.savings == true) {
@@ -66,3 +73,20 @@ function checkSavings() {
 };
 
 checkSavings();
+
+let optExp1;
+
+function chooseOptExpenses() {
+    for (let i = 0; i < 3; i++) {
+        optExp1 = prompt('Введите название статьи необязательных расходов: ', '');
+        if (optExp1 == null || optExp1 == '' ) {
+            i--;
+            alert('Пожалуйста, введите название:');
+            continue;
+        }
+
+        appData.optionalExpenses[i+1] = optExp1;
+    }
+};
+
+chooseOptExpenses();
